@@ -31,11 +31,18 @@ const TasksContextProvider = props => {
         setTasks(tasksArr);
     }
 
+    const deleteTask = taskIndex => {
+        const tasksArr = [...tasks];
+        tasksArr.splice(taskIndex, 1);
+        setTasks(tasksArr);
+    }
+
     return(
         <TasksContext.Provider value={{
             getTasks,
             addTask,
-            toggleCheckTask
+            toggleCheckTask,
+            deleteTask
         }}>
             {props.children}
         </TasksContext.Provider>

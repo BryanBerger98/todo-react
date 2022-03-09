@@ -17,10 +17,15 @@ function NewTaskForm() {
             title: newTask,
             checked: false
         });
+        resetForm();
+    }
+
+    const resetForm = () => {
+        setNewTask('');
     }
 
     return (
-        <form onSubmit={handleSubmit} className="d-flex mb-5">
+        <form onSubmit={handleSubmit} id="newTaskForm" className="d-flex mb-5">
             <div className="form-group flex-fill">
                 <label htmlFor="newTaskInput">Add task</label>
                 <input type="text" id="newTaskInput" value={newTask} onChange={handleChange} className="form-control" />
