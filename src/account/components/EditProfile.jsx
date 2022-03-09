@@ -1,3 +1,4 @@
+import EditProfileEmail from "./EditProfileEmail";
 import EditProfileUsername from "./EditProfileUsername";
 
 function EditProfile(props) {
@@ -15,12 +16,13 @@ function EditProfile(props) {
                 </p>
                 <EditProfileUsername className='ms-2' />
             </div>
-            <hr className="my-3 bg-dark" />
+            <hr className="my-2 bg-dark" />
             <div className="d-flex">
                 <p className="my-auto">Email</p>
                 <p className="my-auto ms-auto">
                     { props.currentUser ? <span>{ props.currentUser.email }</span> : null}
                 </p>
+                <EditProfileEmail className='ms-2' />
             </div>
         </div>
     )
