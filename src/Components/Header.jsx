@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 
-function Navbar() {
+function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
             <div className="container">
@@ -17,9 +17,6 @@ function Navbar() {
                         <li className="nav-item">
                             <Link to='/' className='nav-link'>Home</Link>
                         </li>
-                        {/* <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
-                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -27,5 +24,5 @@ function Navbar() {
     );
   }
   
-  export default Navbar;
+  export default Header;
   
