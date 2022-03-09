@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { TasksContext } from "../Context/TasksContext";
-import Task from "./Task";
+import { TasksContext } from "../context/TasksContext";
+import Task from "../components/Task";
 
 function Tasks(props) {
 

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { TasksContext } from "../Context/TasksContext";
+import { TasksContext } from "../context/TasksContext";
 import DeleteTaskButton from "./Buttons/DeleteTaskButton";
 import EditTaskButton from "./Buttons/EditTaskButton";
 import SaveTaskButton from "./Buttons/SaveTaskButton";

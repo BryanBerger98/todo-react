@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TasksContext } from "../../Context/TasksContext";
+import { TasksContext } from "../../context/TasksContext";
 
 function DeleteTaskButton(props) {
 

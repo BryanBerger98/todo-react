@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { TasksContext } from "../Context/TasksContext";
+import { TasksContext } from "../context/TasksContext";
 import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle";
 
 function TaskFormModal(props) {

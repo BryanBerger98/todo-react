@@ -1,5 +1,5 @@
-import TaskFormModal from "../Components/TaskFormModal";
-import Tasks from "../Components/Tasks";
+import TaskFormModal from "../../tasks/components/TaskFormModal";
+import Tasks from "../../tasks/containers/Tasks";
 
 function Home() {
 

@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import TasksContextProvider from './Context/TasksContext';
+import TasksContextProvider from './tasks/context/TasksContext';
 
 ReactDOM.render(
   <React.StrictMode>
