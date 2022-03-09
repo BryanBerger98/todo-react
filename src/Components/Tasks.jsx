@@ -9,7 +9,7 @@ function Tasks(props) {
 
     useEffect(() => {
         setTasks(tasksContext.getTasks());
-    });
+    }, [tasksContext]);
 
     const onCheckTask = (index) => {
         tasksContext.toggleCheckTask(index);
