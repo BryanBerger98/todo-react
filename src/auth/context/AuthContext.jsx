@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { auth } from '../../firebase-config';
 
@@ -34,11 +34,21 @@ const AuthContextProvider = props => {
         }
     }
 
+    const signoutUser = async () => {
+        try {
+            await signOut(auth);
+            return;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     return(
         <AuthContext.Provider value={{
             currentUser,
             signupUserWithEmailAndPassword,
-            signinUserWithEmailAndPassword
+            signinUserWithEmailAndPassword,
+            signoutUser
         }}>
             {props.children}
         </AuthContext.Provider>

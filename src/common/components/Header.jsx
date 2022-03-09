@@ -1,7 +1,23 @@
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth/context/AuthContext';
 import logo from '../../logo.svg';
 
 function Header() {
+
+    const authContext = useContext(AuthContext);
+
+    const currentUser = authContext.currentUser;
+
+    const navigate = useNavigate();
+
+    const onSignout = () => {
+        authContext.signoutUser()
+        .then(() => {
+            navigate('/signin');
+        }).catch(console.error);
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
             <div className="container">
@@ -17,6 +33,19 @@ function Header() {
                         <li className="nav-item">
                             <Link to='/' className='nav-link'>Home</Link>
                         </li>
+                        { currentUser ?
+                            <li className="nav-item dropdown">
+                                <button className="nav-link dropdown-toggle btn btn-link" type='button' id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    { currentUser.displayName ? currentUser.displayName : 'Me' }
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <Link className='dropdown-item' to='/account'>Account</Link>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><button className="dropdown-item btn btn-link text-danger" type='button' onClick={onSignout}>Log out</button></li>
+                                </ul>
+                            </li>
+                            : null
+                        }
                     </ul>
                 </div>
             </div>
