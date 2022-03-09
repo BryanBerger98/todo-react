@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { TasksContext } from "../Context/TasksContext";
-import DeleteTaskButton from "./DeleteTaskButton";
+import DeleteTaskButton from "./Buttons/DeleteTaskButton";
+import EditTaskButton from "./Buttons/EditTaskButton";
+import SaveTaskButton from "./Buttons/SaveTaskButton";
 
 function Task(props) {
 
@@ -38,9 +40,7 @@ function Task(props) {
                     <input type="text" className="form-control" value={taskValue} onChange={onChangeTaskInputValue} />
                 </div>
             }
-            {!editMode ? 
-                <button className="btn btn-primary me-2" type="button" onClick={onEditTask}>Edit</button>    
-            : <button className="btn btn-success me-2" type="button" onClick={onSaveTask}>Save</button>}
+            {!editMode ? <EditTaskButton onEditTask={onEditTask} /> : <SaveTaskButton onSaveTask={onSaveTask} />}  
             <DeleteTaskButton taskIndex={props.index} />
         </div>
     );
