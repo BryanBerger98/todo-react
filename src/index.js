@@ -6,12 +6,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TasksContextProvider from './tasks/context/TasksContext';
+import AuthContextProvider from './auth/context/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TasksContextProvider>
-      <App />
-    </TasksContextProvider>
+    <AuthContextProvider>
+      <TasksContextProvider>
+        <App />
+      </TasksContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
