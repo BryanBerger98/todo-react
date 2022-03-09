@@ -1,9 +1,8 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import { auth } from '../../firebase-config';
 
-const AuthContext = React.createContext(null);
-
+const AuthContext = React.createContext();
 export { AuthContext };
 
 const AuthContextProvider = props => {
@@ -43,17 +42,27 @@ const AuthContextProvider = props => {
         }
     }
 
+    const updateCurrentUserName = async (username) => {
+        try {
+            await updateProfile(auth.currentUser, {displayName: username});
+            setCurrentUser({...auth.currentUser});
+            return auth.currentUser;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     return(
         <AuthContext.Provider value={{
             currentUser,
             signupUserWithEmailAndPassword,
             signinUserWithEmailAndPassword,
-            signoutUser
+            signoutUser,
+            updateCurrentUserName
         }}>
             {props.children}
         </AuthContext.Provider>
-    )
+    );
 
 }
-
 export default AuthContextProvider;

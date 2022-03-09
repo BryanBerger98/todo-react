@@ -5,14 +5,12 @@ import logo from '../../logo.svg';
 
 function Header() {
 
-    const authContext = useContext(AuthContext);
-
-    const currentUser = authContext.currentUser;
+    const { currentUser, signoutUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
     const onSignout = () => {
-        authContext.signoutUser()
+        signoutUser()
         .then(() => {
             navigate('/signin');
         }).catch(console.error);
