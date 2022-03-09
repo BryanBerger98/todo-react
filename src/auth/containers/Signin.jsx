@@ -18,7 +18,15 @@ function Signin() {
         authContext.signinUserWithEmailAndPassword(signinForm.email, signinForm.password)
         .then(() => {
             navigate('/');
-        }).catch(console.error); //TODO: Manage error: auth/wrong-password
+        }).catch(error => {
+            if (error.code === 'auth/wrong-password') {
+                return alert('Wrong password');
+            }
+            if (error.code === 'auth/user-not-found') {
+                return alert('No user registered with this email address');
+            }
+            console.error(error);
+        });
     }
 
     const handleChange = (event) => {
