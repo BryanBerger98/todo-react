@@ -46,6 +46,7 @@ function TaskFormModal(props) {
             tasksContext.editTask({...props.task, title: taskForm.title, tags}, props.task.id);
         } else {
             tasksContext.addTask({
+                id: Date.now(),
                 title: taskForm.title,
                 checked: false,
                 tags
