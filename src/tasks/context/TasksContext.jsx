@@ -10,10 +10,18 @@ const TasksContextProvider = props => {
         {
             title: 'Task 1',
             checked: false,
+            tags: [
+                '#home',
+                "#cook"
+            ]
         },
         {
             title: 'Task 2',
-            checked: false
+            checked: false,
+            tags: [
+                '#job',
+                "#dev"
+            ]
         }
     ]);
 
