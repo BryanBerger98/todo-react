@@ -12,8 +12,8 @@ function Tasks(props) {
         setTasks(tasksContext.getTasks());
     }, [tasksContext]);
 
-    const onCheckTask = (index) => {
-        tasksContext.toggleCheckTask(index);
+    const onCheckTask = (taskId) => {
+        tasksContext.toggleCheckTask(taskId);
     }
 
     const onFilterTasksByTag = (tag) => {

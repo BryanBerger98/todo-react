@@ -16,8 +16,16 @@ function TaskFormModal(props) {
     const [taskFormModal, setTaskFormModal] = useState(null);
 
     useEffect(() => {
-        setTaskFormModal(new bootstrapBundle.Modal(document.getElementById(props.modalId)));
-    }, [props.modalId]);
+        setTaskFormModal(new bootstrapBundle.Modal(document.getElementById(props.task ? props.task.id + props.modalId : props.modalId)));
+        console.log(props.task);
+        if (props.task) {
+            setTaskForm({
+                title: props.task.title,
+                tags: props.task.tags.join(' ')
+            });
+            setTags(props.task.tags);
+        }
+    }, [props.task, props.modalId]);
 
     const handleChange = (event) => {
         const newTaskForm = {...taskForm};
@@ -34,11 +42,15 @@ function TaskFormModal(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        tasksContext.addTask({
-            title: taskForm.title,
-            checked: false,
-            tags
-        });
+        if (props.task) {
+            tasksContext.editTask({...props.task, title: taskForm.title, tags}, props.task.id);
+        } else {
+            tasksContext.addTask({
+                title: taskForm.title,
+                checked: false,
+                tags
+            });
+        }
         taskFormModal.hide();
         resetForm();
     }
@@ -75,22 +87,22 @@ function TaskFormModal(props) {
 
     return(
         <>
-            <button type="button" className="btn btn-primary ms-auto my-auto" onClick={openModal}>New Task</button>
-            <div className="modal fade" id={props.modalId} tabIndex="-1" aria-labelledby={props.modalId + 'Label'} aria-hidden="true">
+            <button type="button" className={props.button.class} onClick={openModal}>{props.button.name}</button>
+            <div className="modal fade" id={props.task ? props.task.id + props.modalId : props.modalId} tabIndex="-1" aria-labelledby={props.task ? props.task.id + props.modalId + 'Label' : props.modalId + 'Label'} aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <form className="modal-content" onSubmit={handleSubmit}>
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">New task</h5>
+                            <h5 className="modal-title" id={props.task ? props.task.id + props.modalId + 'Title' : props.modalId + 'Title'}>New task</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                         <div className="form-group mb-3">
-                            <label htmlFor="taskTitleInput">Task title</label>
-                            <input type="text" id="taskTitleInput" value={taskForm.title} onChange={handleChange} name="title" className="form-control" />
+                            <label htmlFor={props.task ? props.task.id + props.modalId + 'taskTitleInput' : props.modalId + 'taskTitleInput'}>Task title</label>
+                            <input type="text" id={props.task ? props.task.id + props.modalId + 'taskTitleInput' : props.modalId + 'taskTitleInput'} value={taskForm.title} onChange={handleChange} name="title" className="form-control" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="taskTagsInput">Tags</label>
-                            <input type="text" id="taskTagsInput" value={taskForm.tags} onChange={handleChange} name="tags" className="form-control" />
+                            <label htmlFor={props.task ? props.task.id + props.modalId + 'taskTagsInput' : props.modalId + 'taskTagsInput'}>Tags</label>
+                            <input type="text" id={props.task ? props.task.id + props.taskTagsInput + 'taskTitleInput' : props.modalId + 'taskTagsInput'} value={taskForm.tags} onChange={handleChange} name="tags" className="form-control" />
                         </div>
                         </div>
                         <div className="modal-footer">

@@ -11,7 +11,7 @@ function Home() {
             </div>
             <hr className="bg-primary mt-0 mb-5" />
             <Tasks />
-            <TaskFormModal modalId="taskFormModal" />
+            <TaskFormModal modalId="taskFormModal" task={null} button={{name: 'New Task', class: 'btn btn-primary ms-auto my-auto'}} />
         </div>
     );
   }

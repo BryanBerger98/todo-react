@@ -8,6 +8,7 @@ const TasksContextProvider = props => {
 
     const [tasks, setTasks] = useState([
         {
+            id: 1646906250424,
             title: 'Task 1',
             checked: false,
             tags: [
@@ -16,6 +17,7 @@ const TasksContextProvider = props => {
             ]
         },
         {
+            id: 1646906250425,
             title: 'Task 2',
             checked: false,
             tags: [
@@ -24,6 +26,7 @@ const TasksContextProvider = props => {
             ]
         },
         {
+            id: 1646906250426,
             title: 'Task 3',
             checked: false,
             tags: [
@@ -54,9 +57,9 @@ const TasksContextProvider = props => {
         setTasks([...tasks, newTask]);
     }
 
-    const toggleCheckTask = (taskToCheck) => {
+    const toggleCheckTask = (taskIdToCheck) => {
         const tasksArr = [...tasks];
-        const taskIndex = tasksArr.findIndex(el => el === taskToCheck);
+        const taskIndex = tasksArr.findIndex(el => el.id === taskIdToCheck);
         tasksArr[taskIndex].checked = tasksArr[taskIndex].checked ? false : true;
         setTasks(tasksArr);
     }
@@ -67,9 +70,10 @@ const TasksContextProvider = props => {
         setTasks(tasksArr);
     }
 
-    const editTask = (task, taskIndex) => {
+    const editTask = (task, taskId) => {
         const tasksArr = [...tasks];
-        tasksArr[taskIndex] = task;
+        const tasksToUpdateIndex = tasksArr.findIndex(el => el.id === taskId);
+        tasksArr[tasksToUpdateIndex] = task;
         setTasks(tasksArr);
     }
 
