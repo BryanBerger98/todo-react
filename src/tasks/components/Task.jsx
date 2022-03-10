@@ -33,7 +33,7 @@ function Task(props) {
                 <div className="d-flex flex-column flex-fill">
                     <label className="flex-fill my-auto d-flex me-2" htmlFor={'flexCheckDefault' + props.index}>
                         <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id={'flexCheckDefault' + props.index} onChange={() => props.onCheckTask(props.index)} checked={props.task.checked} />
+                            <input className="form-check-input" type="checkbox" id={'flexCheckDefault' + props.index} onChange={() => props.onCheckTask(props.task)} checked={props.task.checked} />
                         </div>
                         <p className="m-0 ms-1">{props.task.title}</p>    
                     </label>

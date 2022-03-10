@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { TasksContext } from "../context/TasksContext";
 import Task from "../components/Task";
+import Tags from "../components/Tags";
 
 function Tasks(props) {
 
@@ -15,8 +16,13 @@ function Tasks(props) {
         tasksContext.toggleCheckTask(index);
     }
 
+    const onFilterTasksByTag = (tag) => {
+        setTasks(tasksContext.getTasksByTag(tag));
+    }
+
     return (
         <div>
+            <Tags onFilterTasksByTag={onFilterTasksByTag} />
             {tasks.map((task, index) => <Task key={index} task={task} index={index} onCheckTask={onCheckTask} />)}
         </div>
     );

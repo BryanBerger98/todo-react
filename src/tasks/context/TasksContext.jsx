@@ -22,6 +22,14 @@ const TasksContextProvider = props => {
                 '#job',
                 "#dev"
             ]
+        },
+        {
+            title: 'Task 3',
+            checked: false,
+            tags: [
+                '#home',
+                "#dev"
+            ]
         }
     ]);
 
@@ -29,12 +37,26 @@ const TasksContextProvider = props => {
         return tasks;
     }
 
+    const getTags = () => {
+        const tags = [].concat(...tasks.map(el => el.tags));
+        return [...new Set(tags)];
+    }
+
+    const getTasksByTag = (tag) => {
+        if (tag === '*') {
+            return tasks;
+        }
+        const filteredTasks = tasks.filter(el => el.tags.includes(tag));
+        return filteredTasks;
+    }
+
     const addTask = (newTask) => {
         setTasks([...tasks, newTask]);
     }
 
-    const toggleCheckTask = (taskIndex) => {
+    const toggleCheckTask = (taskToCheck) => {
         const tasksArr = [...tasks];
+        const taskIndex = tasksArr.findIndex(el => el === taskToCheck);
         tasksArr[taskIndex].checked = tasksArr[taskIndex].checked ? false : true;
         setTasks(tasksArr);
     }
@@ -57,7 +79,9 @@ const TasksContextProvider = props => {
             addTask,
             toggleCheckTask,
             deleteTask,
-            editTask
+            editTask,
+            getTags,
+            getTasksByTag
         }}>
             {props.children}
         </TasksContext.Provider>
